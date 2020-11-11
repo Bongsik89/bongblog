@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import org.smallman.dao.BoardDAO;
 import org.smallman.vo.BoardVO;
+import org.smallman.vo.Criteria;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -17,13 +18,18 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void write(BoardVO boardVO) throws Exception {
 		boardDAO.write(boardVO);
+	}
 
+	@Override
+	public List<BoardVO> list(Criteria cri) throws Exception {
+		return boardDAO.list(cri);
 	}
 	
 	@Override
-	public List<BoardVO> list() throws Exception {
-		return boardDAO.list();
+	public int listCount() throws Exception {		
+		return boardDAO.listCount();
 	}
+
 
 	@Override
 	public BoardVO read(int bno) throws Exception {

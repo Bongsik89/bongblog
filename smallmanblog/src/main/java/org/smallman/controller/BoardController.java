@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.smallman.service.BoardService;
 import org.smallman.vo.BoardVO;
+import org.smallman.vo.Criteria;
+import org.smallman.vo.PageMaker;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,10 +39,16 @@ public class BoardController {
 
 	// 게시글 목록 조회
 	@RequestMapping(value = "/board/list", method = RequestMethod.GET)
-	public String list(Model model) throws Exception {
+	public String list(Model model, Criteria cri) throws Exception {
 		logger.info("list입니다.");
 
-		model.addAttribute("list", boardService.list());
+		model.addAttribute("list", boardService.list(cri));
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(boardService.listCount());
+		
+		model.addAttribute("pageMaker", pageMaker);
 		
 		return "board/list";
 	}
