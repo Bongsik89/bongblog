@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.smallman.vo.BoardVO;
-import org.smallman.vo.Criteria;
+import org.smallman.vo.SearchCriteria;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -23,13 +23,13 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> list(Criteria cri) throws Exception {
-		return sqlSession.selectList("boardMapper.list", cri);
+	public List<BoardVO> list(SearchCriteria scri) throws Exception {
+		return sqlSession.selectList("boardMapper.list", scri);
 	}
 
 	@Override
-	public int listCount() throws Exception {
-		return sqlSession.selectOne("boardMapper.listCount"); 
+	public int listCount(SearchCriteria scri) throws Exception {
+		return sqlSession.selectOne("boardMapper.listCount", scri); 
 	}
 
 	@Override
