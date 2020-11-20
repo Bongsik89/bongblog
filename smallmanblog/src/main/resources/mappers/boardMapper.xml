@@ -6,8 +6,8 @@
 
 	<!-- 게시판 작성 -->
 	<insert id="insert">
-		INSERT INTO BOARD(TITLE,CONTENT,WRITER,REGDATE)
-		VALUES(#{title},#{content},#{writer},now())
+		INSERT INTO BOARD(TITLE,CONTENT,WRITER)
+		VALUES(#{title},#{content},#{writer})
 	</insert>
 
 	<!-- 게시글 목록 조회 -->
