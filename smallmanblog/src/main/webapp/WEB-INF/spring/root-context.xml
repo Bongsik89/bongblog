@@ -40,5 +40,6 @@
 	<context:component-scan base-package="org.smallman.service"></context:component-scan>
 	<context:component-scan base-package="org.smallman.dao"></context:component-scan>
 	<context:component-scan base-package="org.smallman.vo"></context:component-scan>
+	<context:component-scan base-package="org.smallman.util"></context:component-scan>
 		
 </beans>

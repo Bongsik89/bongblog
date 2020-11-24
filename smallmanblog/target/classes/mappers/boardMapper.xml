@@ -52,8 +52,7 @@
 	<!-- 수정 -->
 	<select id="update" parameterType="org.smallman.vo.BoardVO">
 		UPDATE BOARD SET
-		TITLE =
-		#{title},
+		TITLE = #{title},
 		CONTENT = #{content}
 		WHERE BNO = #{bno}
 	</select>
@@ -63,5 +62,10 @@
 		DELETE FROM BOARD
 		WHERE BNO = #{bno}
 	</delete>
+	
+	 <insert id="insertFile" parameterType="hashMap">
+		INSERT INTO FILE(BNO, ORG_FILE_NAME, STORED_FILE_NAME, FILE_SIZE)
+		VALUES(#{BNO},#{ORG_FILE_NAME}, #{STORED_FILE_NAME}, #{FILE_SIZE})
+    </insert>
 
 </mapper>
