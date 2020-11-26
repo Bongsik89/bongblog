@@ -33,45 +33,46 @@ public class BoardServiceImpl implements BoardService {
 			boardDAO.insertFile(list.get(i));
 		}
 	}
-	
+
 	// 게시물 목록 조회
 	@Override
 	public List<BoardVO> list(SearchCriteria scri) throws Exception {
 		return boardDAO.list(scri);
 	}
-	
+
 	// 게시물 총 갯수
 	@Override
 	public int listCount(SearchCriteria scri) throws Exception {
 		return boardDAO.listCount(scri);
 	}
-	
+
 	// 게시물 조회
 	@Transactional(isolation = Isolation.READ_COMMITTED)
 	@Override
 	public BoardVO read(int bno) throws Exception {
-			boardDAO.boardHit(bno);
+		boardDAO.boardHit(bno);
 		return boardDAO.read(bno);
 	}
-	
+
 	@Override
-	public void update(BoardVO boardVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest) throws Exception {
-		
+	public void update(BoardVO boardVO, String[] files, String[] fileNames, MultipartHttpServletRequest mpRequest)
+			throws Exception {
+
 		boardDAO.update(boardVO);
-		
+
 		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(boardVO, files, fileNames, mpRequest);
 		Map<String, Object> tempMap = null;
 		int size = list.size();
-		for(int i = 0; i<size; i++) {
+		for (int i = 0; i < size; i++) {
 			tempMap = list.get(i);
-			if(tempMap.get("IS_NEW").equals("Y")) {
+			if (tempMap.get("IS_NEW").equals("Y")) {
 				boardDAO.insertFile(tempMap);
-			}else {
+			} else {
 				boardDAO.updateFile(tempMap);
 			}
 		}
 	}
-	
+
 	// 게시물 삭제
 	@Override
 	public void delete(int bno) throws Exception {
