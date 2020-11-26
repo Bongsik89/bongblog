@@ -27,4 +27,17 @@ public interface BoardDAO {
 
 	// 파일첨부 업로드
 	public void insertFile(Map<String, Object> map) throws Exception;
+
+	// 첨부 파일 조회
+	public List<Map<String, Object>> selectFileList(int bno) throws Exception;
+	
+	// 첨부 파일 다운
+	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
+	
+	// 첨부 파일 수정
+	public void updateFile(Map<String, Object> map) throws Exception;
+	
+	// 게시판 조회수
+	public void boardHit(int bno) throws Exception;
+	
 }
